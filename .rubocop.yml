@@ -19,6 +19,7 @@ Metrics/PerceivedComplexity:
 Layout/LineLength:
   Exclude:
     - 'bin/*'
+    - 'config/initializers/devise.rb'
 
 Style/FetchEnvVar:
   Exclude:
