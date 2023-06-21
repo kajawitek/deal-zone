@@ -1,3 +1,9 @@
+require:
+  - rubocop-rails
+  - rubocop-rspec
+  - rubocop-capybara
+  - rubocop-factory_bot
+
 AllCops:
   NewCops: enable
 
@@ -19,7 +25,14 @@ Metrics/PerceivedComplexity:
 Layout/LineLength:
   Exclude:
     - 'bin/*'
+    - 'config/initializers/devise.rb'
 
 Style/FetchEnvVar:
   Exclude:
     - 'bin/*'
+
+RSpec/ExampleLength:
+  Enabled: false
+
+RSpec/MultipleExpectations:
+  Enabled: false
