@@ -45,6 +45,10 @@ jobs:
       - name: Install Selenium
         run: |
           sudo gem install selenium-webdriver
+      - name: Install chrome Headless
+        run: |
+          sudo apt-get update
+          sudo apt-get install google-chrome-stable
       - name: Run rspec
         run: bundle exec rspec
 
