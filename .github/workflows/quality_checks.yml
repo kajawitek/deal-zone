@@ -42,6 +42,9 @@ jobs:
         run: yarn install --check-files
       - name: Set up database schema
         run: bin/rails db:schema:load
+      - name: Install Selenium
+        run: |
+          sudo gem install selenium-webdriver
       - name: Run rspec
         run: bundle exec rspec
 
