@@ -28,6 +28,7 @@ group :development, :test do
   gem 'rubocop-capybara'
   gem 'rubocop-factory_bot'
   gem 'rubocop-rspec'
+  gem 'selenium-webdriver'
 end
 
 group :development do
