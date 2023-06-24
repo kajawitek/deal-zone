@@ -40,6 +40,8 @@ jobs:
           bundler-cache: true
       - name: Yarn
         run: yarn install --check-files
+      - name: Assets precompile
+        run: bundle exec rails assets:precompile
       - name: Set up database schema
         run: bin/rails db:schema:load
       - name: Run rspec
