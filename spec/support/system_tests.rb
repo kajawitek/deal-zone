@@ -5,7 +5,7 @@ RSpec.configure do |c|
     driven_by :rack_test
   end
 
-  c.before(:each, type: :system, js: true) do
+  c.before(:each, js: true, type: :system) do
     driven_by :chrome_headless
   end
 end
