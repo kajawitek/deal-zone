@@ -1,6 +1,8 @@
+# frozen_string_literal: true
+
 require 'rails_helper'
 
-RSpec.describe Product, type: :model do
+RSpec.describe Product do
   it 'validates the presence of a name' do
     product = build(:product, name: nil)
     expect(product).not_to be_valid
