@@ -6,7 +6,7 @@ class ProductsController < ApplicationController
   end
 
   def show
-    render :show, locals: { product: Product.find(params[:id]) }
+    render :show, locals: { product: product }
   end
 
   def new
@@ -14,7 +14,7 @@ class ProductsController < ApplicationController
   end
 
   def edit
-    render :edit, locals: { product: Product.find(params[:id]) }
+    render :edit, locals: { product: product }
   end
 
   def create
@@ -29,7 +29,6 @@ class ProductsController < ApplicationController
   end
 
   def update
-    product = Product.find(params[:id])
     if product.update(product_params)
       redirect_to products_path, notice: 'Product was successfully updated.'
     else
@@ -38,12 +37,15 @@ class ProductsController < ApplicationController
   end
 
   def destroy
-    product = Product.find(params[:id])
     product.destroy
     redirect_to products_path, notice: 'Product was successfully destroyed.'
   end
 
   private
+
+  def product
+    @product ||= Product.find(params[:id])
+  end
 
   def product_params
     params.require(:product).permit(:name, :description, :price, :quantity, :user_id)
