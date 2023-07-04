@@ -8,13 +8,13 @@ RSpec.describe 'Products' do
     product = build(:product, user: user)
 
     login_as user, scope: :user
-    
+
     visit root_path
     click_link 'Products'
 
     click_link 'Add product'
 
-    fill_in "product_name", with: product.name
+    fill_in 'product_name', with: product.name
     fill_in 'product_description', with: product.description
     fill_in 'product_price', with: product.price
     fill_in 'product_quantity', with: product.quantity
@@ -25,52 +25,52 @@ RSpec.describe 'Products' do
   end
 
   it 'user can edit a product' do
-      user = create(:user)
-      product = create(:product, user: user)
+    user = create(:user)
+    product = create(:product, user: user)
 
-      login_as user, scope: :user
+    login_as user, scope: :user
 
-      visit root_path
-      click_link 'Products'
-      click_link "#{product.name}"
-      click_link 'Edit'
+    visit root_path
+    click_link 'Products'
+    click_link product.name.to_s
+    click_link 'Edit'
 
-      fill_in 'product_name', with: 'New Name'
+    fill_in 'product_name', with: 'New Name'
 
-      click_button 'Update Product'
+    click_button 'Update Product'
 
-      expect(page).to have_content('Product was successfully updated.')
-      expect(page).to have_content('New Name')
+    expect(page).to have_content('Product was successfully updated.')
+    expect(page).to have_content('New Name')
   end
 
   it 'user can delete a product' do
-      user = create(:user)
-      product = create(:product, user: user)
+    user = create(:user)
+    product = create(:product, user: user)
 
-      login_as user, scope: :user
+    login_as user, scope: :user
 
-      visit root_path
-      click_link 'Products'
-      click_link "#{product.name}"
-      click_link 'Destroy'
+    visit root_path
+    click_link 'Products'
+    click_link product.name.to_s
+    click_link 'Destroy'
 
-      expect(page).to have_content('Product was successfully destroyed.')
-      expect(page).to_not have_content("#{product.name}")
+    expect(page).to have_content('Product was successfully destroyed.')
+    expect(page).not_to have_content(product.name.to_s)
   end
 
   it 'user can view a product' do
-      user = create(:user)
-      product = create(:product, user: user)
+    user = create(:user)
+    product = create(:product, user: user)
 
-      login_as user, scope: :user
+    login_as user, scope: :user
 
-      visit root_path
-      click_link 'Products'
-      click_link "#{product.name}"
+    visit root_path
+    click_link 'Products'
+    click_link product.name.to_s
 
-      expect(page).to have_content("#{product.name}")
-      expect(page).to have_content("#{product.description}")
-      expect(page).to have_content("#{product.price}")
-      expect(page).to have_content("#{product.quantity}")
+    expect(page).to have_content(product.name.to_s)
+    expect(page).to have_content(product.description.to_s)
+    expect(page).to have_content(product.price.to_s)
+    expect(page).to have_content(product.quantity.to_s)
   end
 end
