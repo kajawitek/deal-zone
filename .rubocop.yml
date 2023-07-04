@@ -43,6 +43,6 @@ Style/HashSyntax:
 Rails/I18nLocaleTexts:
   Enabled: false
 
-Rails/EagerEvaluationLogMessage:
+Rails/Output:
   Exclude:
     - 'db/seeds.rb'
