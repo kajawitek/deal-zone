@@ -17,7 +17,7 @@
 
   <div>
     <%= form.label :price %><br>
-    <%= form.number_field :price %><br>
+    <%= form.number_field :price, step: 0.01 %><br>
     <% product.errors.full_messages_for(:price).each do |message| %>
       <div><%= message %></div>
     <% end %>
