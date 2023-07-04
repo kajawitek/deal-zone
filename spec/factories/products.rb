@@ -6,5 +6,6 @@ FactoryBot.define do
     description { Faker::Lorem.paragraph(sentence_count: 2) }
     price { Faker::Commerce.price }
     quantity { Faker::Number.number(digits: 2) }
+    user
   end
 end
