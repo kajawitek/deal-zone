@@ -21,7 +21,7 @@ class ProductsController < ApplicationController
     product = Product.new(product_params)
 
     if product.save
-      redirect_to products_path, notice: 'Subject was successfully updated.'
+      redirect_to products_path, notice: 'Product was successfully created.'
     else
       render :new, locals: { product: product }
     end
