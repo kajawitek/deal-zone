@@ -2,7 +2,7 @@
 
 class ProductsController < ApplicationController
   def index
-    render :index, locals: { products: Product.all.order(:created_at).page(params[:page]) }
+    render :index, locals: { products: Product.all.order(created_at: :desc).page(params[:page]) }
   end
 
   def show
