@@ -2,10 +2,17 @@
 
 <ul>
   <% products.each do |product| %>
-    <li>
-      <%= link_to product.name, product %>
-    </li>
+    <div class="card" style="width: 18rem;">
+      <div class="card-body">
+        <h5 class="card-title"><%= product.name %></h5>
+        <h6 class="card-subtitle mb-2 text-muted"><%= product.price %></h6>
+        <p class="card-text"><%= product.description %></p>
+        <a class="card-link">Show</a>
+      </div>
+    </div>
   <% end %>
 </ul>
+
+<%= paginate products %> 
 
 <%= link_to "Add product", new_product_path %>
