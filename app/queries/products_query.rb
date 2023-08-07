@@ -2,12 +2,11 @@
 
 class ProductsQuery
   def initialize(products:, params: {})
-    @products = products
+    @collection = products
     @params = params
   end
 
   def call
-    initialize_collection
     order_by_created_at
     paginate
 
@@ -15,10 +14,6 @@ class ProductsQuery
   end
 
   private
-
-  def initialize_collection
-    @collection = @products
-  end
 
   def order_by_created_at
     @collection = @collection.order(created_at: :desc)
