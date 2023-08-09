@@ -14,6 +14,7 @@ class ProductsController < ApplicationController
   end
 
   def edit
+    authorize product
     render :edit, locals: { product: product }
   end
 
@@ -29,6 +30,7 @@ class ProductsController < ApplicationController
   end
 
   def update
+    authorize product
     if product.update(product_params)
       redirect_to products_path, notice: 'Product was successfully updated.'
     else
@@ -37,6 +39,7 @@ class ProductsController < ApplicationController
   end
 
   def destroy
+    authorize product
     product.destroy
     redirect_to products_path, notice: 'Product was successfully destroyed.'
   end
