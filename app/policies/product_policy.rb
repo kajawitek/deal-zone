@@ -33,7 +33,7 @@ class ProductPolicy
   end
 
   def destroy?
-    false
+    update?
   end
 
   class Scope
