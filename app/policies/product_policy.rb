@@ -1,15 +1,8 @@
 # frozen_string_literal: true
 
 class ProductPolicy < ApplicationPolicy
-  attr_reader :user, :product
-
-  def initialize(user, product)
-    @user = user
-    @product = product
-  end
-
   def update?
-    user == product.user
+    user == record.user
   end
 
   def edit?
