@@ -16,7 +16,6 @@ class ProductsController < ApplicationController
   def edit
     authorize product
     render :edit, locals: { product: product }
-
   rescue Pundit::NotAuthorizedError
     redirect_to products_path, notice: 'You are not authorized to edit this product.'
   end
@@ -39,7 +38,6 @@ class ProductsController < ApplicationController
     else
       render :edit, locals: { product: product }
     end
-
   rescue Pundit::NotAuthorizedError
     redirect_to products_path, notice: 'You are not authorized to update this product.'
   end
@@ -48,7 +46,6 @@ class ProductsController < ApplicationController
     authorize product
     product.destroy
     redirect_to products_path, notice: 'Product was successfully destroyed.'
-
   rescue Pundit::NotAuthorizedError
     redirect_to products_path, notice: 'You are not authorized to destroy this product.'
   end
