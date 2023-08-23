@@ -1,8 +1,8 @@
 # frozen_string_literal: true
 
-class Product < ApplicationRecord
-  belongs_to :user
-  has_many :orders, dependent: :destroy
+class Order < ApplicationRecord
+  belongs_to :buyer
+  belongs_to :products
 
   validates :name, :description, :price, :quantity, presence: true
 end
