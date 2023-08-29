@@ -1,0 +1,15 @@
+<h1>My Orders</h1>
+
+<ul>
+  <% orders.each do |order| %>
+    <div class="card" style="width: 18rem;">
+      <div class="card-body">
+        <p class="card-text"><%= order.id %></p>
+        <p class="card-text"><%= order.product.name %></p>
+        <h6 class="card-subtitle mb-2 text-muted"><%= order.purchase_price %></h6>
+        <p class="card-text"><%= time_ago_in_words(order.created_at) %></p>
+        <p class="card-text"><%= order.delivery_status %></p>
+      </div>
+    </div>
+  <% end %>
+</ul>

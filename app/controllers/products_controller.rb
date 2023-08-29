@@ -27,7 +27,7 @@ class ProductsController < ApplicationController
     if product.save
       redirect_to products_path, notice: 'Product was successfully created.'
     else
-      render :new, locals: { product: product }
+      render :new, locals: { product: product }, status: :unprocessable_entity
     end
   end
 
@@ -36,7 +36,7 @@ class ProductsController < ApplicationController
     if product.update(product_params)
       redirect_to products_path, notice: 'Product was successfully updated.'
     else
-      render :edit, locals: { product: product }
+      render :edit, locals: { product: product }, status: :unprocessable_entity
     end
   rescue Pundit::NotAuthorizedError
     redirect_to products_path, notice: 'You are not authorized to update this product.'
