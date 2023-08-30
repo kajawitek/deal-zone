@@ -11,7 +11,6 @@ class OrdersController < ApplicationController
     order = Order.new(product: product)
     render :new, locals: { order: order }
   rescue ActiveRecord::RecordNotFound => e
-    flash[:notice] = 'Product not found'
     redirect_to products_path, notice: e.message
   end
 
