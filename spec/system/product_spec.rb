@@ -33,7 +33,7 @@ RSpec.describe 'Products' do
     visit root_path
     click_link 'Products'
     click_link product.name.to_s
-    click_link 'Edit'
+    click_button 'Edit'
 
     fill_in 'product_name', with: 'New Name'
 
@@ -52,7 +52,7 @@ RSpec.describe 'Products' do
     visit root_path
     click_link 'Products'
     click_link product.name.to_s
-    click_link 'Destroy'
+    click_button 'Destroy'
 
     expect(page).to have_content('Product was successfully destroyed.')
     expect(page).not_to have_content(product.name.to_s)
