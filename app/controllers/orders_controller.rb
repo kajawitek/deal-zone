@@ -6,14 +6,12 @@ class OrdersController < ApplicationController
   end
 
   def new
-    begin
-      product = Product.find(params[:product])
-      order = Order.new(product: product)
-      render :new, locals: { order: order }
-    rescue ActiveRecord::RecordNotFound => e
-      flash[:notice] = 'Product not found'
-      redirect_to products_path, notice: e.message
-    end
+    product = Product.find(params[:product])
+    order = Order.new(product: product)
+    render :new, locals: { order: order }
+  rescue ActiveRecord::RecordNotFound => e
+    flash[:notice] = 'Product not found'
+    redirect_to products_path, notice: e.message
   end
 
   def create
@@ -21,7 +19,7 @@ class OrdersController < ApplicationController
     order = Order.new(product: product)
     order.buyer_id = current_user.id
     order.purchase_price = product.price
-    if product.quantity > 0
+    if product.quantity.positive?
       begin
         ActiveRecord::Base.transaction do
           product.quantity -= 1
@@ -38,10 +36,6 @@ class OrdersController < ApplicationController
   end
 
   private
-
-  def order
-    @order ||= Order.find(params[:id])
-  end
 
   def order_params
     params.require(:order).permit(:product_id)
