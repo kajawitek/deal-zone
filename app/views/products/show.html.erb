@@ -10,14 +10,16 @@
   <h5>Quantity</h5>
   <p><%= product.quantity %></p>
 
-  <% if policy(product).edit? %>
-    <%= link_to "Edit", edit_product_path(product), class:"btn btn-primary" %>
-  <% end %>
-  
-  <% if policy(product).destroy? %>
-    <%= link_to "Destroy", product_path(product), class:"btn btn-danger", data: {
-                      turbo_method: :delete,
-                      turbo_confirm: "Are you sure?"
-                    } %>
-  <% end %>
+  <div class="btn-group" role="group" aria-label="Basic example">
+    <% if policy(product).edit? %>
+      <%= button_to "Edit", edit_product_path(product), method: :get, class:"btn btn-primary" %>
+    <% end %>
+    <% if policy(product).destroy? %>
+      <%= button_to "Destroy", product_path(product), method: :delete, class:"btn btn-danger", data: {
+                        turbo_method: :delete,
+                        turbo_confirm: "Are you sure?"
+                      } %>
+    <% end %>
+    <%= button_to "Buy", new_order_path(product: product), method: :get, class: "btn btn-primary" %>
+  </div>
 </ul>
