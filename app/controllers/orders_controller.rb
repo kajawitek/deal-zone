@@ -2,7 +2,8 @@
 
 class OrdersController < ApplicationController
   def index
-    render :index, locals: { orders: Order.all.where(buyer: current_user) }
+    orders = Order.where(buyer: current_user).order(created_at: :desc).paginate(page: params[:page], per_page: 10)
+    render :index, locals: { orders: orders }
   end
 
   def new
@@ -16,13 +17,11 @@ class OrdersController < ApplicationController
 
   def create
     product = Product.find(order_params[:product_id])
-    order = Order.new(product: product)
-    order.buyer_id = current_user.id
-    order.purchase_price = product.price
+    order = Order.new(product: product, buyer_id: current_user.id, purchase_price: product.price)
     if product.quantity.positive?
       begin
         ActiveRecord::Base.transaction do
-          product.quantity -= 1
+          product.decrement!(:quantity)
           product.save!
           order.save!
         end
