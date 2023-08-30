@@ -21,11 +21,10 @@ class OrdersController < ApplicationController
       begin
         ActiveRecord::Base.transaction do
           product.decrement!(:quantity)
-          product.save!
           order.save!
         end
         redirect_to orders_path, notice: 'Order was successfully created.'
-      rescue ActiveRecord::RecordInvalid => e
+      rescue ActiveRecord::RecordInvalid, ActiveRecord::RecordNotFound => e
         render :new, locals: { order: order }, notice: e.message
       end
     else
